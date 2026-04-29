@@ -1,0 +1,11 @@
+groups:
+- name: Network-Utilization-High
+  rules:
+  - alert: Network-Utilization-High Alert
+    expr: sum by (instance)(rate(node_network_receive_bytes_total[1m]))+ sum by (instance)(irate(node_network_transmit_bytes_total[1m]))
+
+    for: 1m
+    labels:
+      severity: 'critical'
+    annotations:
+      summary: Network-Utilization-High
